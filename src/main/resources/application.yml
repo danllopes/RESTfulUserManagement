@@ -8,3 +8,8 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: false
+
+  api:
+    security:
+      token:
+        secret: ${JWT_SECRET:my-secret-key}
