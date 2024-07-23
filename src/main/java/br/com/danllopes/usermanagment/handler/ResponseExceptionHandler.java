@@ -3,6 +3,7 @@ package br.com.danllopes.usermanagment.handler;
 import br.com.danllopes.usermanagment.exceptions.DuplicateEmailException;
 import br.com.danllopes.usermanagment.exceptions.ExceptionResponse;
 import br.com.danllopes.usermanagment.exceptions.LoginAlreadyExistsException;
+import br.com.danllopes.usermanagment.exceptions.UserNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -25,6 +26,11 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.CONFLICT);
     }
 
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleUserNotFoundException(Exception ex, WebRequest request) {
+        ExceptionResponse response = this.buildExceptionResponse(ex, request, HttpStatus.NOT_FOUND);
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
 
     private ExceptionResponse buildExceptionResponse(Exception ex, WebRequest request, HttpStatus status) {
         return new ExceptionResponse(LocalDate.now(), ex.getMessage(), request.getDescription(false), status);
