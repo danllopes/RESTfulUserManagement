@@ -9,7 +9,7 @@ public record UserDTO(
         String name,
 
         @NotBlank
-        @Email
+        @Email(message = "Invalid Email")
         String email,
 
         @NotBlank
