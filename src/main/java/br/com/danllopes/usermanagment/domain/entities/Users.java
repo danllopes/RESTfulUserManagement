@@ -2,13 +2,14 @@ package br.com.danllopes.usermanagment.domain.entities;
 
 import br.com.danllopes.usermanagment.dtos.UserDTO;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.List;
 import java.util.Objects;
 
 @Entity(name = "users")
@@ -19,18 +20,19 @@ public class Users implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    private String name;
+    @Email
     private String email;
+
+    private String name;
     private String login;
     private String password;
 
     public Users() {}
 
-    public Users(UserDTO data, String password) {
+    public Users(UserDTO data) {
         this.name = data.name();
         this.email = data.email();
         this.login = data.login();
-        this.password = data.password();
     }
 
     public String getId() {
@@ -106,6 +108,10 @@ public class Users implements UserDetails {
     @Override
     public int hashCode() {
         return Objects.hashCode(id);
+    }
+
+    public void encryptPassword(String password) {
+        this.password =  new BCryptPasswordEncoder().encode(password);
     }
 
 }
