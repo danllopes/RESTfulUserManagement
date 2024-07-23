@@ -1,3 +1,8 @@
+api:
+  security:
+    token:
+      secret: ${JWT_SECRET:my-secret-key}
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -8,8 +13,3 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: false
-
-  api:
-    security:
-      token:
-        secret: ${JWT_SECRET:my-secret-key}

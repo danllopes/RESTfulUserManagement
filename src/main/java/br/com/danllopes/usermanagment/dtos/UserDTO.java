@@ -1,5 +1,6 @@
 package br.com.danllopes.usermanagment.dtos;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public record UserDTO(
@@ -8,6 +9,7 @@ public record UserDTO(
         String name,
 
         @NotBlank
+        @Email
         String email,
 
         @NotBlank
