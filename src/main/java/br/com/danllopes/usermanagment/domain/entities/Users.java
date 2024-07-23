@@ -113,5 +113,4 @@ public class Users implements UserDetails {
     public void encryptPassword(String password) {
         this.password =  new BCryptPasswordEncoder().encode(password);
     }
-
 }
