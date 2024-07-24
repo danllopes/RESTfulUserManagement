@@ -226,6 +226,8 @@ A seguir estão os endpoints disponíveis do projeto:
 
   Este procedimento permite que você teste e explore os endpoints protegidos da API de maneira segura e eficiente usando o Swagger.
 
+   [Link para o swagger na porta 8080](http://localhost:8080/swagger-ui/index.html#])
+
 ## Você pode utilizar o cURL para testar os endpoints diretamente do terminal ou linha de comando. Abaixo estão alguns exemplos básicos:
 
 ### Login
