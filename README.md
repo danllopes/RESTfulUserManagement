@@ -48,7 +48,7 @@ Implementação de operações de cadastro, autenticação, recuperação de inf
 3. Inicialize o Docker. Para isso, acesse a pasta 'docker' e execute o seguinte comando:
 
 ```bash
-docker-compose -f mysql-docker-compose up -d
+docker-compose -f mysql-docker-compose.yml up -d
 ```
 
   - obs: após o início da aplicação você podera acessar o banco de dados acessando o seguinte endereço: [Link para localhost:8000](http://localhost:8000)
