@@ -1,5 +1,6 @@
 package br.com.danllopes.usermanagment.infra.security;
 
+import br.com.danllopes.usermanagment.exceptions.InvalidTokenException;
 import br.com.danllopes.usermanagment.repositories.UserRepository;
 import br.com.danllopes.usermanagment.services.TokenService;
 import jakarta.servlet.FilterChain;
@@ -31,7 +32,8 @@ public class SecurityFilter extends OncePerRequestFilter {
         if(token != null) {
             var login = tokenService.validateToken(token);
             UserDetails user = userRepository.findByLogin(login);
-
+            if (user == null)
+                throw new InvalidTokenException("Invalid or expired token");
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
