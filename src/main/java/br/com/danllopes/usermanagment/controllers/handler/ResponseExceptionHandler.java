@@ -1,6 +1,6 @@
-package br.com.danllopes.usermanagment.handler;
+package br.com.danllopes.usermanagment.controllers.handler;
 
-import br.com.danllopes.usermanagment.exceptions.*;
+import br.com.danllopes.usermanagment.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +10,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDate;
-
 
 @ControllerAdvice
 @RestController
