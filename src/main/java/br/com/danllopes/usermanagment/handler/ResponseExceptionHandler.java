@@ -40,6 +40,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
 
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidTokenException(Exception ex, WebRequest request) {
+        ExceptionResponse response = this.buildExceptionResponse(ex, request, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
     private ExceptionResponse buildExceptionResponse(Exception ex, WebRequest request, HttpStatus status) {
         return new ExceptionResponse(LocalDate.now(), ex.getMessage(), request.getDescription(false), status);
     }
