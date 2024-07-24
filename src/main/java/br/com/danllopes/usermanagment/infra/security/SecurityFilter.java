@@ -1,6 +1,6 @@
 package br.com.danllopes.usermanagment.infra.security;
 
-import br.com.danllopes.usermanagment.exceptions.InvalidTokenException;
+import br.com.danllopes.usermanagment.domain.exceptions.InvalidTokenException;
 import br.com.danllopes.usermanagment.repositories.UserRepository;
 import br.com.danllopes.usermanagment.services.TokenService;
 import jakarta.servlet.FilterChain;
