@@ -1,8 +1,7 @@
 package br.com.danllopes.usermanagment.domain.entities;
 
-import br.com.danllopes.usermanagment.dtos.UserDTO;
+import br.com.danllopes.usermanagment.dtos.request.UserDTO;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,9 +19,7 @@ public class Users implements UserDetails {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @Email
     private String email;
-
     private String name;
     private String login;
     private String password;
@@ -63,13 +60,32 @@ public class Users implements UserDetails {
         this.login = login;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Users users = (Users) o;
+        return Objects.equals(id, users.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    // Método para codificar a senha
+    public void encryptPassword(String password) {
+        this.password =  new BCryptPasswordEncoder().encode(password);
+    }
+
+    //Métdos implementados de UserDetails
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     @Override
@@ -95,22 +111,5 @@ public class Users implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Users users = (Users) o;
-        return Objects.equals(id, users.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hashCode(id);
-    }
-
-    public void encryptPassword(String password) {
-        this.password =  new BCryptPasswordEncoder().encode(password);
     }
 }

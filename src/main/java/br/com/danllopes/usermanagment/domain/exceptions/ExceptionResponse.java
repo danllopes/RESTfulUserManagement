@@ -1,4 +1,4 @@
-package br.com.danllopes.usermanagment.exceptions;
+package br.com.danllopes.usermanagment.domain.exceptions;
 
 import org.springframework.http.HttpStatus;
 

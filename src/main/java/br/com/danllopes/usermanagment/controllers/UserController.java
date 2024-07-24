@@ -1,7 +1,7 @@
 package br.com.danllopes.usermanagment.controllers;
 
 import br.com.danllopes.usermanagment.domain.entities.Users;
-import br.com.danllopes.usermanagment.dtos.UserDTO;
+import br.com.danllopes.usermanagment.dtos.request.UserDTO;
 import br.com.danllopes.usermanagment.services.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.transaction.Transactional;
@@ -18,9 +18,7 @@ public class UserController {
 
     private final UserService service;
 
-    public UserController(UserService service) {
-        this.service = service;
-    }
+    public UserController(UserService service) {this.service = service;}
 
     @PostMapping("/register")
     @Operation(summary = "Registrar novo usuário", description = "Cria um novo usuário com os dados fornecidos.", tags = "Usuário")

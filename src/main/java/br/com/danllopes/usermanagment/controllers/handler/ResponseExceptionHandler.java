@@ -1,6 +1,6 @@
-package br.com.danllopes.usermanagment.handler;
+package br.com.danllopes.usermanagment.controllers.handler;
 
-import br.com.danllopes.usermanagment.exceptions.*;
+import br.com.danllopes.usermanagment.domain.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -10,7 +10,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDate;
-
 
 @ControllerAdvice
 @RestController
@@ -36,6 +35,12 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(InvalidCredentialsException.class)
     public ResponseEntity<ExceptionResponse> handleInvalidCredentialsException(Exception ex, WebRequest request) {
+        ExceptionResponse response = this.buildExceptionResponse(ex, request, HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(InvalidTokenException.class)
+    public ResponseEntity<ExceptionResponse> handleInvalidTokenException(Exception ex, WebRequest request) {
         ExceptionResponse response = this.buildExceptionResponse(ex, request, HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(response, HttpStatus.UNAUTHORIZED);
     }
