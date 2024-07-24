@@ -1,10 +1,10 @@
 package br.com.danllopes.usermanagment.services;
 
 import br.com.danllopes.usermanagment.domain.entities.Users;
-import br.com.danllopes.usermanagment.dtos.UserDTO;
-import br.com.danllopes.usermanagment.exceptions.DuplicateEmailException;
-import br.com.danllopes.usermanagment.exceptions.LoginAlreadyExistsException;
-import br.com.danllopes.usermanagment.exceptions.UserNotFoundException;
+import br.com.danllopes.usermanagment.dtos.request.UserDTO;
+import br.com.danllopes.usermanagment.domain.exceptions.DuplicateEmailException;
+import br.com.danllopes.usermanagment.domain.exceptions.LoginAlreadyExistsException;
+import br.com.danllopes.usermanagment.domain.exceptions.UserNotFoundException;
 import br.com.danllopes.usermanagment.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
@@ -15,12 +15,12 @@ public class UserService {
 
     private final UserRepository repository ;
 
-    public UserService(UserRepository repository) {
-        this.repository = repository;
-    }
+    public UserService(UserRepository repository) {this.repository = repository;}
 
+    // Devolve todos os usuários em uma lista
     public List<Users> getUsers() {return this.repository.findAll();}
 
+    // Devolve usuário com base no ID
     public Users getOptionalUser(String id) {return this.findUserById(id);}
 
     public Users createUser(UserDTO data) {

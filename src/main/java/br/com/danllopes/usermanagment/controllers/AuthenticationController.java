@@ -1,9 +1,9 @@
 package br.com.danllopes.usermanagment.controllers;
 
 import br.com.danllopes.usermanagment.domain.entities.Users;
-import br.com.danllopes.usermanagment.dtos.AuthenticationDTO;
-import br.com.danllopes.usermanagment.dtos.LoginResponseDTO;
-import br.com.danllopes.usermanagment.exceptions.InvalidCredentialsException;
+import br.com.danllopes.usermanagment.dtos.request.AuthenticationDTO;
+import br.com.danllopes.usermanagment.dtos.response.LoginResponseDTO;
+import br.com.danllopes.usermanagment.domain.exceptions.InvalidCredentialsException;
 import br.com.danllopes.usermanagment.services.TokenService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
